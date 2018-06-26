@@ -1,0 +1,28 @@
+#应用信息
+spring:
+  application:
+    name: api-gateway
+
+#服务端口号
+server:
+  port: 7777
+
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+zuul:
+  #路由公共前缀
+  prefix: /api
+  routes:
+    user :
+        path : /user/**
+        serviceId : user-service
+        stripPrefix : false
+    order :
+        path : /order/**
+        serviceId : order-service
+        stripPrefix : false
+
+

@@ -1,0 +1,43 @@
+#应用信息
+spring:
+  application:
+    name: order-service
+  #数据源配置
+  datasource:
+    url: jdbc:mysql://119.23.208.37:3306/sky?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&autoReconnect=true&useSSL=false
+    username: root
+    password: Hebs8169816~!@
+
+#服务端口号
+server:
+  port: 9002
+
+
+
+#开源通用mapper
+mapper:
+  mappers:
+  - com.example.orderservice.core.BaseMapper
+  not-empty: false
+  identity: MYSQL
+  style: normal #数据库字段与实体类属性映射方式,详情见tk.mybatis.mapper.code.Style
+
+#mybatis配置
+mybatis:
+  type-aliases-package: com.example.orderservice.*.pojo
+  mapper-locations:
+  - classpath*:/com/example/orderservice/**/mapping/*Mapper.xml
+
+#分页助手
+pagehelper:
+  helper-dialect : mysql
+  support-methods-arguments: true
+  params: countSql
+  reasonable : false
+
+
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka
